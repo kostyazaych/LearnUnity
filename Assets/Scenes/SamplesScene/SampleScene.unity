@@ -140,6 +140,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 3
   PlayerCamera: {fileID: 1439184094}
+  mouseSense: 4
+  player: {fileID: 224112751}
 --- !u!143 &224112750
 CharacterController:
   m_ObjectHideFlags: 0
@@ -158,6 +160,12 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &224112751 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4566567456441714878, guid: 6eebc75edd417984d9f4da73599898de,
+    type: 3}
+  m_PrefabInstance: {fileID: 347665428}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &261860059
 GameObject:
   m_ObjectHideFlags: 0
