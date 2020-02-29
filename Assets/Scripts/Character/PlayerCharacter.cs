@@ -7,6 +7,12 @@ public class PlayerCharacter : MonoBehaviour
     public float speed = 10.0f;
     public float rotationSpeed = 100.0f;
     public Camera PlayerCamera;
+
+   
+    public bool readyWeapon = false;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,4 +30,9 @@ public class PlayerCharacter : MonoBehaviour
         float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
         //Debug.Log("InputFunc");
     }
+
+    
+
 }
+
+

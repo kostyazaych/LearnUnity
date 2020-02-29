@@ -34,7 +34,7 @@ public class MovementInput : MonoBehaviour
     void Update()
     {
          Move();
-         RotateCharacter();
+         //RotateCharacter();
     }
 
 
@@ -85,7 +85,7 @@ public class MovementInput : MonoBehaviour
         //Debug.Log(movementInput.magnitude);
     }
 
-    void RotateCharacter() {
+    /*void RotateCharacter() {
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
 
@@ -103,56 +103,5 @@ public class MovementInput : MonoBehaviour
 
         player.rotation = Quaternion.Euler(rotPlayer);
     }
-
+    */
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-public GameObject[] structuresTypes;
-Vector3 mousePos;
-GameObject _structureTypes;
-GameObject pre_structure;
-bool isBuilding = false;
-
-
-void Update()
-{
-    float x = Input.mousePosition.x;
-    float z = Input.mousePosition.z;
-    float y = 0.25f;
-    mousePos = new Vector3(x, y, z);
-
-    if (isBuilding == true)
-    {
-        pre_structure.transform.position = mousePos;
-        if (Input.GetMouseButtonDown(0))
-        {
-            Destroy(pre_structure);
-            Instantiate(_structureTypes, mousePos, Quaternion.identity);
-            isBuilding = false;
-        }
-    }
-}
-
-
-public void SelectFarm()
-{
-    _structureTypes = structuresTypes[0];
-    isBuilding = true;
-    Destroy(pre_structure);
-    pre_structure = (GameObject)Instantiate(_structureTypes, mousePos, Quaternion.identity);
-}
- 
- 
- }
