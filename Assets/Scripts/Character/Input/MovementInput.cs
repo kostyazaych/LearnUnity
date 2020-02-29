@@ -13,12 +13,17 @@ public class MovementInput : MonoBehaviour
     private float speedSmoothTime = 0.01f;
     private float rotationSpeed = 0.1f;
     private float gravity = 3f;
+
     public Camera PlayerCamera;
     private Vector3 TestVelocity;
+    public float mouseSense = 0.1f;
+
+
+    [SerializeField] private Transform player;
     private Transform mainCameraTransform = null;
 
-    public float mouseSense = 0.1f;
-    [SerializeField] private Transform player;
+    private bool ReadyWeaponMovement = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +39,7 @@ public class MovementInput : MonoBehaviour
     void Update()
     {
          Move();
+        ReadyWeapon();
          //RotateCharacter();
     }
 
@@ -83,6 +89,21 @@ public class MovementInput : MonoBehaviour
         animator.SetFloat("Speed", movementInput.magnitude);
          TestVelocity = desiredMoveDirection * currentSpeed * Time.deltaTime;
         //Debug.Log(movementInput.magnitude);
+    }
+
+    private void ReadyWeapon() {
+        if (Input.GetButton("ReadyWeapon") && ReadyWeaponMovement == false)
+        {
+            GetComponent<PlayerCharacter>().ReadyCharacterWeapon();
+            ReadyWeaponMovement = true;
+            
+        }
+        if ((Input.GetButtonUp("ReadyWeapon") && ReadyWeaponMovement == true))
+        {
+            GetComponent<PlayerCharacter>().ReadyCharacterWeapon();
+            ReadyWeaponMovement = false;
+          
+        }
     }
 
     /*void RotateCharacter() {

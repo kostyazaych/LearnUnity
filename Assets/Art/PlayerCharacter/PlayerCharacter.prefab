@@ -167,6 +167,7 @@ MonoBehaviour:
   speed: 10
   rotationSpeed: 100
   PlayerCamera: {fileID: 0}
+  playerWeapon: {fileID: 0}
   readyWeapon: 0
 --- !u!114 &5918795294370596954
 MonoBehaviour:
@@ -207,22 +208,22 @@ PrefabInstance:
     - target: {fileID: 232374461986470943, guid: b0387399d3033674a92307dd5f0047f2,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.70760477
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 232374461986470943, guid: b0387399d3033674a92307dd5f0047f2,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 232374461986470943, guid: b0387399d3033674a92307dd5f0047f2,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 232374461986470943, guid: b0387399d3033674a92307dd5f0047f2,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.70660853
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 232374461986470943, guid: b0387399d3033674a92307dd5f0047f2,
         type: 3}
@@ -232,7 +233,7 @@ PrefabInstance:
     - target: {fileID: 232374461986470943, guid: b0387399d3033674a92307dd5f0047f2,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 89.923004
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 232374461986470943, guid: b0387399d3033674a92307dd5f0047f2,
         type: 3}

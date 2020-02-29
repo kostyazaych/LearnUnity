@@ -6,9 +6,12 @@ public class PlayerCharacter : MonoBehaviour
 {
     public float speed = 10.0f;
     public float rotationSpeed = 100.0f;
-    public Camera PlayerCamera;
 
-   
+    public Camera PlayerCamera;
+    private GameObject playerCharacter;
+    public GameObject playerWeapon;
+
+
     public bool readyWeapon = false;
 
 
@@ -17,6 +20,7 @@ public class PlayerCharacter : MonoBehaviour
     void Start()
     {
          PlayerCamera.enabled = true;
+        
     }
 
     // Update is called once per frame
@@ -31,7 +35,17 @@ public class PlayerCharacter : MonoBehaviour
         //Debug.Log("InputFunc");
     }
 
-    
+   public void ReadyCharacterWeapon() {
+        if (readyWeapon == false)
+        {
+            playerWeapon.GetComponent<WeaponBase>().ReadyState();
+            readyWeapon = true;
+        }
+        else {
+            playerWeapon.GetComponent<WeaponBase>().StillState();
+            readyWeapon = false;
+        }
+    }
 
 }
 

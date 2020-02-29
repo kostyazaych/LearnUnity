@@ -16,9 +16,10 @@ public class WeaponBase : MonoBehaviour
     {
         weaponObject = this.gameObject;
         weaponOwner = this.gameObject.transform.parent;
+        weaponOwner.GetComponent<PlayerCharacter>().playerWeapon = weaponObject;
+
+        //Debug.Log(weaponOwner.GetComponent<PlayerCharacter>().playerWeapon);
        
-        Debug.Log(weaponOwner.GetComponent<PlayerCharacter>().readyWeapon);
-        ToggleState();
 
     }
 
@@ -28,22 +29,22 @@ public class WeaponBase : MonoBehaviour
 
     }
 
-    void ToggleState()
+   public void ReadyState()
     {
+            gameObject.transform.localPosition = weaponStillPos;
+            weaponOwner.GetComponent<PlayerCharacter>().readyWeapon = false;
+            gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
-        if (weaponOwner.GetComponent<PlayerCharacter>().readyWeapon == true)
-        {
-            gameObject.transform.position = weaponStillPos;
-            Debug.Log("DA");
-        }
-        else {
-            gameObject.transform.position = weaponReadyPos;
-            Debug.Log("PIZDA");
-        }
-         //Pistol.transform.position = new Vector3(0.75f, 0.0f, 0.0f);
-        
+        Debug.Log("Ready");
+
     }
-
+    public void StillState() {
+        gameObject.transform.localPosition = weaponReadyPos;
+        weaponOwner.GetComponent<PlayerCharacter>().readyWeapon = true;
+        gameObject.transform.localRotation = Quaternion.Euler(90, 0, 0);
+      
+        Debug.Log("Still");
+    }
 
 }
 
