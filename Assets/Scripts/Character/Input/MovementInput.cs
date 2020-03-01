@@ -17,6 +17,7 @@ public class MovementInput : MonoBehaviour
     public Camera PlayerCamera;
     private Vector3 TestVelocity;
     public float mouseSense = 0.1f;
+    private float mouseSenseReady = 0.5f;
 
 
     private Transform player;
@@ -29,6 +30,7 @@ public class MovementInput : MonoBehaviour
     void Start()
     {
         player = this.gameObject.transform;
+        mouseSenseReady = mouseSense * 0.5f;
         Cursor.visible = true;
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
@@ -112,8 +114,18 @@ public class MovementInput : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
 
-        float rotAmountX = mouseX * mouseSense;
-        float rotAmountY = mouseY * (mouseSense * -1.4f);
+        float rotAmountX = 0f;
+        float rotAmountY = 0f;
+
+        if (ReadyWeaponMovement == false)
+        {
+             rotAmountX = mouseX * mouseSense;
+             rotAmountY = mouseY * (mouseSense * -1.4f);
+        }
+        else {
+            rotAmountX = mouseX * mouseSenseReady;
+            rotAmountY = mouseY * (mouseSenseReady * -1.4f);
+        }
 
         Vector3 rotPlayer = player.transform.rotation.eulerAngles;
 
@@ -123,8 +135,6 @@ public class MovementInput : MonoBehaviour
         if (ReadyWeaponMovement == true)
         {
             rotPlayer.x += rotAmountY;
-          
-             Debug.Log(rotPlayer.x);
 
             if (rotPlayer.x < 320f && rotPlayer.x > 65f) {
                 rotPlayer.x = 320f;
