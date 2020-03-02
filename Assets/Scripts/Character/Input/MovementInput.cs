@@ -8,6 +8,7 @@ public class MovementInput : MonoBehaviour
     private Animator animator = null;
 
     private float movementSpeed = 3f;
+    private float readyMovementSpeed = 1.5f;
     private float currentSpeed = 0f;
     private float speedSmoothVelocity = 0f;
     private float speedSmoothTime = 0.01f;
@@ -49,9 +50,6 @@ public class MovementInput : MonoBehaviour
     private void Move() {
         Vector2 movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        
-        /*Vector3 forward = mainCameraTransform.forward;
-        Vector3 right = mainCameraTransform.right;*/
         Vector3 forward = transform.forward;
         Vector3 right = transform.right;
 
@@ -74,12 +72,19 @@ public class MovementInput : MonoBehaviour
             gravityVector.y -= gravity;
         }
 
-       /* if (desiredMoveDirection != Vector3.zero)
+        /* if (desiredMoveDirection != Vector3.zero)
+         {
+             mainCameraTransform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(desiredMoveDirection), rotationSpeed);
+         }
+         */
+        float targetSpeed = 0;
+        if (ReadyWeaponMovement == false)
         {
-            mainCameraTransform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(desiredMoveDirection), rotationSpeed);
+             targetSpeed = movementSpeed * movementInput.magnitude;
         }
-        */
-        float targetSpeed = movementSpeed * movementInput.magnitude;
+        else {
+             targetSpeed = readyMovementSpeed * movementInput.magnitude;
+        }
         currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVelocity, speedSmoothTime);
 
         controller.Move(desiredMoveDirection * currentSpeed * Time.deltaTime);
@@ -100,6 +105,7 @@ public class MovementInput : MonoBehaviour
         float mouseSenseReady = mouseSense * 0.5f;
         float rotAmountX = 0f;
         float rotAmountY = 0f;
+        
         
         if (ReadyWeaponMovement == false)
         {
@@ -144,10 +150,11 @@ public class MovementInput : MonoBehaviour
 
     void ReadyWeapon()
     {
+
         if (Input.GetButton("Fire2") && ReadyWeaponMovement == false)
         {
             GetComponent<PlayerCharacter>().ReadyCharacterWeapon();
-            ReadyWeaponMovement = true;
+            ReadyWeaponMovement = true;  
 
         }
         if ((Input.GetButtonUp("Fire2") && ReadyWeaponMovement == true))
