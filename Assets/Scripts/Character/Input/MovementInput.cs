@@ -17,7 +17,7 @@ public class MovementInput : MonoBehaviour
     public Camera PlayerCamera;
     private Vector3 TestVelocity;
     public float mouseSense = 0.1f;
-    private float mouseSenseReady = 0.5f;
+   
 
 
     private Transform player;
@@ -30,7 +30,6 @@ public class MovementInput : MonoBehaviour
     void Start()
     {
         player = this.gameObject.transform;
-        mouseSenseReady = mouseSense * 0.5f;
         Cursor.visible = true;
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
@@ -94,29 +93,14 @@ public class MovementInput : MonoBehaviour
         Debug.Log(movementInput.magnitude);*/
     }
 
-    private void ReadyWeapon() {
-        if (Input.GetButton("ReadyWeapon") && ReadyWeaponMovement == false)
-        {
-            GetComponent<PlayerCharacter>().ReadyCharacterWeapon();
-            ReadyWeaponMovement = true;
-            
-        }
-        if ((Input.GetButtonUp("ReadyWeapon") && ReadyWeaponMovement == true))
-        {
-            GetComponent<PlayerCharacter>().ReadyCharacterWeapon();
-            ReadyWeaponMovement = false;
-          
-        }
-    }
-
     void RotateCharacter()
     {
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
-
+        float mouseSenseReady = mouseSense * 0.5f;
         float rotAmountX = 0f;
         float rotAmountY = 0f;
-
+        
         if (ReadyWeaponMovement == false)
         {
              rotAmountX = mouseX * mouseSense;
@@ -146,7 +130,35 @@ public class MovementInput : MonoBehaviour
         else {
             rotPlayer.x = 0;
         }
+
+        if (Input.GetButtonUp("Turn"))
+            rotPlayer.y = rotPlayer.y - 180f;
+
         player.rotation = Quaternion.Euler(rotPlayer);
+       
+        
 
     }
+
+     
+
+    void ReadyWeapon()
+    {
+        if (Input.GetButton("Fire2") && ReadyWeaponMovement == false)
+        {
+            GetComponent<PlayerCharacter>().ReadyCharacterWeapon();
+            ReadyWeaponMovement = true;
+
+        }
+        if ((Input.GetButtonUp("Fire2") && ReadyWeaponMovement == true))
+        {
+            GetComponent<PlayerCharacter>().ReadyCharacterWeapon();
+            ReadyWeaponMovement = false;
+
+        }
+    }
+
+    
+
+
 }
