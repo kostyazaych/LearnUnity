@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5053941014693645400}
   - component: {fileID: 9045882655103208660}
   - component: {fileID: 4856972631083417838}
+  - component: {fileID: 7858178875453278353}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -166,6 +167,14 @@ MonoBehaviour:
   PlayerCamera: {fileID: 0}
   playerWeapon: {fileID: 0}
   readyWeapon: 0
+--- !u!81 &7858178875453278353
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245581537347601623}
+  m_Enabled: 1
 --- !u!1001 &402244008920879821
 PrefabInstance:
   m_ObjectHideFlags: 0
