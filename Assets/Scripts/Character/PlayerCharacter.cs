@@ -36,6 +36,7 @@ public class PlayerCharacter : MonoBehaviour
     }
 
    public void ReadyCharacterWeapon() {
+        Debug.Log(playerWeapon.GetComponent<WeaponBase>().weaponStillPos);
         if (readyWeapon == false)
         {
             playerWeapon.GetComponent<WeaponBase>().ReadyState();
@@ -47,6 +48,9 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
+    public void CharacterAttack() {
+        playerWeapon.GetComponent<WeaponBase>().BaseAttack();
+    }
 }
 
 

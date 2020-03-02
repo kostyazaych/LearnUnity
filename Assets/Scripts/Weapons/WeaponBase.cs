@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponBase : MonoBehaviour
+public  class WeaponBase : MonoBehaviour
 {
 
     public Vector3 weaponStillPos;
@@ -11,16 +11,12 @@ public class WeaponBase : MonoBehaviour
     private Transform weaponOwner = null;
     private GameObject weaponObject = null;
 
-    // Start is called before the first frame update
-    void Start()
+    
+    void Awake()
     {
         weaponObject = this.gameObject;
         weaponOwner = this.gameObject.transform.parent;
         weaponOwner.GetComponent<PlayerCharacter>().playerWeapon = weaponObject;
-
-        //Debug.Log(weaponOwner.GetComponent<PlayerCharacter>().playerWeapon);
-       
-
     }
 
     // Update is called once per frame
@@ -29,21 +25,18 @@ public class WeaponBase : MonoBehaviour
 
     }
 
-   public void ReadyState()
-    {
+   public void ReadyState() {
             gameObject.transform.localPosition = weaponStillPos;
             weaponOwner.GetComponent<PlayerCharacter>().readyWeapon = false;
             gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
-
-        Debug.Log("Ready");
-
     }
     public void StillState() {
         gameObject.transform.localPosition = weaponReadyPos;
         weaponOwner.GetComponent<PlayerCharacter>().readyWeapon = true;
         gameObject.transform.localRotation = Quaternion.Euler(90, 0, 0);
-      
-        Debug.Log("Still");
+    }
+
+    public virtual void BaseAttack() {
     }
 
 }

@@ -28,7 +28,7 @@ public class MovementInput : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         player = this.gameObject.transform;
         Cursor.visible = true;
@@ -44,6 +44,11 @@ public class MovementInput : MonoBehaviour
         Move();
         ReadyWeapon();
         RotateCharacter();
+
+        //Attacking
+        if (Input.GetButton("Fire1"))
+        GetComponent<PlayerCharacter>().CharacterAttack();
+      
     }
 
 
