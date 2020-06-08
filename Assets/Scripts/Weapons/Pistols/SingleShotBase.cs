@@ -21,7 +21,7 @@ public class SingleShotBase : WeaponBase
     }
 
     void StartSingleShotBase() {
-       
+        Debug.Log("StartSingleShotBaseSTART");
     }
 
    protected void AttackSingleShotBase() {
